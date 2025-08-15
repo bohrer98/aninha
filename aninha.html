@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convite Especial para Aninha 💌</title>
+<style>
+    body {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        background: linear-gradient(to bottom, #ffeef5, #fff);
+        text-align: center;
+        color: #444;
+        padding: 20px;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        color: #e75480;
+        font-size: 2.5em;
+        margin-top: 20px;
+        animation: pulse 1.5s infinite;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin: 10px auto 30px;
+        max-width: 600px;
+    }
+
+    button {
+        background-color: #e75480;
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        font-size: 1.1em;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: 10px;
+    }
+
+    button:hover {
+        background-color: #d1436e;
+        transform: scale(1.05);
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 400px;
+        margin: auto;
+    }
+
+    .footer {
+        margin-top: 40px;
+        font-size: 0.9em;
+        color: #777;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    /* ❤️ Corações caindo */
+    .heart {
+        position: fixed;
+        top: -10px;
+        color: #e75480;
+        font-size: 20px;
+        animation: fall linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Esconde telas que não estão ativas */
+    .page {
+        display: none;
+    }
+    .active {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- Página 1 -->
+<div id="page1" class="page active">
+    <h1>💖 Aninha, aceita sair comigo? 💖</h1>
+    <p>Olá, minha querida Aninha!<br>
+       Preparei este convite especial só para você.<br>
+       Agora é hora de escolher nosso primeiro encontro...</p>
+    <button onclick="goToPage(2)">Escolher o Date 😏</button>
+    <div class="footer">Feito com muito carinho por Leonardo 💌</div>
+</div>
+
+<!-- Página 2 -->
+<div id="page2" class="page">
+    <h1>Escolha com sabedoria 😏</h1>
+    <p>O destino do nosso encontro está em suas mãos!</p>
+    <div class="options">
+        <button onclick="confirmDate('🍝 Jantar romântico no La Mafia Trattoria')">🍝 Jantar romântico no La Mafia Trattoria</button>
+        <button onclick="confirmDate('🍣 Noite de sushi no Boni Sushi')">🍣 Noite de sushi no Boni Sushi</button>
+        <button onclick="confirmDate('☕ Café aconchegante no Café do Lago')">☕ Café aconchegante no Café do Lago</button>
+        <button onclick="confirmDate('🍃 Piquenique no Lago Municipal')">🍃 Piquenique no Lago Municipal</button>
+        <button onclick="confirmDate('🎯 Surpresa preparada pelo Leonardo')">🎯 Surpresa preparada pelo Leonardo</button>
+    </div>
+    <div class="footer">Feito com muito carinho por Leonardo 💌</div>
+</div>
+
+<!-- Página 3 -->
+<div id="page3" class="page">
+    <h1>Encontro marcado! 💕</h1>
+    <p id="mensagem"></p>
+    <button onclick="goToPage(1)">Voltar ao início</button>
+    <div class="footer">Feito com muito carinho por Leonardo 💌</div>
+</div>
+
+<script>
+    // Controle de páginas
+    function goToPage(num) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page' + num).classList.add('active');
+    }
+
+    // Confirma a escolha
+    function confirmDate(opcao) {
+        document.getElementById('mensagem').innerText = `Perfeito, Aninha! Nosso primeiro encontro será: ${opcao}!`;
+        goToPage(3);
+    }
+
+    // Corações caindo
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+        heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
